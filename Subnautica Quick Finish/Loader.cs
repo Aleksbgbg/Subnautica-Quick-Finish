@@ -14,6 +14,8 @@
         {
             hookTarget = new GameObject();
             Object.DontDestroyOnLoad(hookTarget);
+
+            hookTarget.AddComponent<Hook>();
         }
 
         // If the injector injects the DLL again, but calls the Unload
