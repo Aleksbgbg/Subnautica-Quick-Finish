@@ -8,10 +8,22 @@
         // need public access to inject.
         // Methods are therefore less likely to be called by accident.
 
+        private static GameObject hookTarget;
+
         private static void Load()
         {
-            GameObject hookTarget = new GameObject();
+            hookTarget = new GameObject();
             Object.DontDestroyOnLoad(hookTarget);
+        }
+
+        // If the injector injects the DLL again, but calls the Unload
+        // method instead, Mono will cache the DLL and call the Unload
+        // method on the same code instance.
+        // AssemblyVersion must stay the same between injections for
+        // this to work.
+        private static void Unload()
+        {
+            Object.Destroy(hookTarget);
         }
     }
 }
