@@ -10,7 +10,8 @@
 
         internal void BuildNeptuneLaunchPlatform()
         {
-
+            GameObject neptuneLaunchPlatform = CraftData.InstantiateFromPrefab(TechType.RocketBase);
+            neptuneLaunchPlatform.transform.position = MainCamera.camera.transform.position;
         }
 
         internal void BuildNeptuneRocketPiece()
