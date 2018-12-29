@@ -34,8 +34,17 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Subnautica">
+      <HintPath>..\Lib\Subnautica.dll</HintPath>
+    </Reference>
+    <Reference Include="Subnautica-firstpass">
+      <HintPath>..\Lib\Subnautica-firstpass.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\Lib\UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
