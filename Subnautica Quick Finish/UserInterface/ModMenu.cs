@@ -1,5 +1,7 @@
 ﻿namespace Subnautica.Quick.Finish.UserInterface
 {
+    using Subnautica.Quick.Finish.Components;
+
     using UnityEngine;
 
     internal class ModMenu : MonoBehaviour
@@ -11,6 +13,13 @@
         private const float InterControlDistance = 5f;
 
         private readonly Rect _backgroundRectangle = new Rect(50f, 50f, 300f, 250f);
+
+        private ModActionManager _modActionManager;
+
+        private void Awake()
+        {
+            _modActionManager = gameObject.AddComponent<ModActionManager>();
+        }
 
         private void OnGUI()
         {
@@ -27,17 +36,17 @@
 
             if (GUI.Button(ConsumeCurrentControlRectangle(ref currentControlRectangle), "Build Neptune Launch Platform"))
             {
-                // TODO: Build Neptune Launch Platform
+                _modActionManager.BuildNeptuneLaunchPlatform();
             }
 
             if (GUI.Button(ConsumeCurrentControlRectangle(ref currentControlRectangle), "Build Neptune Rocket Piece"))
             {
-                // TODO: Build Neptune Rocket Piece
+                _modActionManager.BuildNeptuneRocketPiece();
             }
 
             if (GUI.Button(ConsumeCurrentControlRectangle(ref currentControlRectangle), "Disable Quarantine Enforcement Platform"))
             {
-                // TODO: Disable Quarantine Enforcement Platform
+                _modActionManager.DisableQuarantineEnforcementProgram();
             }
         }
 
