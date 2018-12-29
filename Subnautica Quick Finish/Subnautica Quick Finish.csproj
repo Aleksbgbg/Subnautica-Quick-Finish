@@ -7,7 +7,7 @@
     <ProjectGuid>{3418EE38-7031-4B05-9D29-8680A3E6E681}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Subnautica_Quick_Finish</RootNamespace>
+    <RootNamespace>Subnautica.Quick.Finish</RootNamespace>
     <AssemblyName>Subnautica Quick Finish</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
