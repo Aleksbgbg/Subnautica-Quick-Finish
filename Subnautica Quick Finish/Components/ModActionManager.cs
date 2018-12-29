@@ -20,7 +20,7 @@
 
         internal void DisableQuarantineEnforcementProgram()
         {
-
+            StoryGoalCustomEventHandler.main.DisableGun();
         }
     }
 }
