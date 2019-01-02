@@ -21,7 +21,7 @@
             _neptuneRocketConstructor.ConstructNextNeptuneRocketPiece();
         }
 
-        internal void DisableQuarantineEnforcementProgram()
+        internal void DisableQuarantineEnforcementPlatform()
         {
             StoryGoalCustomEventHandler.main.DisableGun();
         }

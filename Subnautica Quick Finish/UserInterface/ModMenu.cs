@@ -52,7 +52,7 @@
             (
                 "Disable Quarantine Enforcement Platform",
                 ref currentControlRectangle,
-                _modActionManager.DisableQuarantineEnforcementProgram
+                _modActionManager.DisableQuarantineEnforcementPlatform
             );
         }
 
