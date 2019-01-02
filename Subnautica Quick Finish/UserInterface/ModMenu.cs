@@ -1,5 +1,7 @@
 ﻿namespace Subnautica.Quick.Finish.UserInterface
 {
+    using System;
+
     using Subnautica.Quick.Finish.Components;
 
     using UnityEngine;
@@ -34,29 +36,34 @@
                 DefaultControlHeight
             );
 
-            if (GUI.Button(ConsumeCurrentControlRectangle(ref currentControlRectangle), "Build Neptune Launch Platform"))
-            {
-                _modActionManager.BuildNeptuneLaunchPlatform();
-            }
-
-            if (GUI.Button(ConsumeCurrentControlRectangle(ref currentControlRectangle), "Build Neptune Rocket Piece"))
-            {
-                _modActionManager.BuildNeptuneRocketPiece();
-            }
-
-            if (GUI.Button(ConsumeCurrentControlRectangle(ref currentControlRectangle), "Disable Quarantine Enforcement Platform"))
-            {
-                _modActionManager.DisableQuarantineEnforcementProgram();
-            }
+            Button
+            (
+                "Build Neptune Launch Platform",
+                ref currentControlRectangle,
+                _modActionManager.BuildNeptuneLaunchPlatform
+            );
+            Button
+            (
+                "Build Neptune Rocket Piece",
+                ref currentControlRectangle,
+                _modActionManager.BuildNeptuneRocketPiece
+            );
+            Button
+            (
+                "Disable Quarantine Enforcement Platform",
+                ref currentControlRectangle,
+                _modActionManager.DisableQuarantineEnforcementProgram
+            );
         }
 
-        private static Rect ConsumeCurrentControlRectangle(ref Rect currentControlRectangle)
+        private static void Button(string text, ref Rect currentControlRectangle, Action action)
         {
-            Rect originalCurrentControlRectangle = currentControlRectangle;
+            if (GUI.Button(currentControlRectangle, text))
+            {
+                action();
+            }
 
             currentControlRectangle.y += DefaultControlHeight + InterControlDistance;
-
-            return originalCurrentControlRectangle;
         }
     }
 }
