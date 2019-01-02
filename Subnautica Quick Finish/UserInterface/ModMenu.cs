@@ -1,6 +1,8 @@
 ﻿namespace Subnautica.Quick.Finish.UserInterface
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
 
     using Subnautica.Quick.Finish.Components;
 
@@ -16,7 +18,19 @@
 
         private readonly Rect _backgroundRectangle = new Rect(50f, 50f, 300f, 250f);
 
+        private readonly Dictionary<string, Action> _buttonsTextActionMap;
+
         private ModActionManager _modActionManager;
+
+        internal ModMenu()
+        {
+            _buttonsTextActionMap = new Dictionary<string, Action>
+            {
+                ["Build Neptune Launch Platform"] = _modActionManager.BuildNeptuneLaunchPlatform,
+                ["Built Neptune Rocket Piece"] = _modActionManager.BuildNeptuneRocketPiece,
+                ["Disable Quarantine Enforcement Platform"] = _modActionManager.DisableQuarantineEnforcementPlatform
+            };
+        }
 
         private void Awake()
         {
@@ -36,34 +50,20 @@
                 DefaultControlHeight
             );
 
-            Button
-            (
-                "Build Neptune Launch Platform",
-                ref currentControlRectangle,
-                _modActionManager.BuildNeptuneLaunchPlatform
-            );
-            Button
-            (
-                "Build Neptune Rocket Piece",
-                ref currentControlRectangle,
-                _modActionManager.BuildNeptuneRocketPiece
-            );
-            Button
-            (
-                "Disable Quarantine Enforcement Platform",
-                ref currentControlRectangle,
-                _modActionManager.DisableQuarantineEnforcementPlatform
-            );
+            ButtonArray(_buttonsTextActionMap, ref currentControlRectangle);
         }
 
-        private static void Button(string text, ref Rect currentControlRectangle, Action action)
+        private static void ButtonArray(IDictionary<string, Action> textActionMap, ref Rect currentControlRectangle)
         {
-            if (GUI.Button(currentControlRectangle, text))
+            foreach (KeyValuePair<string, Action> textActionPair in textActionMap)
             {
-                action();
-            }
+                if (GUI.Button(currentControlRectangle, textActionPair.Key))
+                {
+                    textActionPair.Value();
+                }
 
-            currentControlRectangle.y += DefaultControlHeight + InterControlDistance;
+                currentControlRectangle.y += DefaultControlHeight + InterControlDistance;
+            }
         }
     }
 }
